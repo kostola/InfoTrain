@@ -4,10 +4,12 @@ import collections
 import json
 import requests
 
+async_mode=None
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
 app.config['DEBUG'] = True
-socketio = SocketIO(app)
+socketio = SocketIO(app, async_mode=async_mode)
 
 # ----- Main routes -------------------------------------------------------------------------------
 
@@ -42,4 +44,4 @@ def test_message(message):
 # ----- Main function -----------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    socketio.run(app, debug=True)
+    socketio.run(app, host="0.0.0.0", debug=True)
