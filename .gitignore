@@ -1,5 +1,5 @@
 
-# Created by https://www.gitignore.io/api/python,sublimetext
+# Created by https://www.gitignore.io/api/python,sublimetext,vagrant
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
@@ -108,7 +108,7 @@ ENV/
 
 # project files should be checked into the repository, unless a significant
 # proportion of contributors will probably not be using SublimeText
-# *.sublime-project
+*.sublime-project
 
 # sftp configuration file
 sftp-config.json
@@ -129,4 +129,7 @@ bh_unicode_properties.cache
 # https://packagecontrol.io/packages/sublime-github
 GitHub.sublime-settings
 
-# End of https://www.gitignore.io/api/python,sublimetext
+### Vagrant ###
+.vagrant/
+
+# End of https://www.gitignore.io/api/python,sublimetext,vagrant
