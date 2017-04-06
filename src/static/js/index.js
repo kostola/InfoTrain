@@ -1,5 +1,6 @@
 var changeTimer = false;
 
+/*
 function setStations(stations) {
     console.log("setStations");
     console.log(stations);
@@ -37,6 +38,28 @@ function setStations(stations) {
         tot_counter++;
     });
 }
+*/
+
+function parseReply(reply) {
+    if ("changes" in reply) {
+        changes = reply["changes"];
+        for (var i = 0; i < changes.length; i++) {
+            applyChange(changes[i]);
+        }
+    }
+}
+
+function applyChange(change) {
+    if ("action" in change) {
+        if (change["action"] == "set_html") {
+            $(change["target"]).html(change["html"]);
+        } else {
+            console.log("applyChange received a unknown action \"" + change["action"] + "\"");
+        }
+    } else {
+        console.log("applyChange received a change with no action");
+    }
+}
 
 $(document).ready( function() {
     // initializations
@@ -46,19 +69,10 @@ $(document).ready( function() {
     // stations websocket
     var socket = io.connect('http://' + document.domain + ':' + location.port + '/stationsws');
     
-    socket.on('find_reply', function(msg) {
-        console.log("socket replied " + msg)
-        setStations(msg.data);
+    socket.on('find_reply', function(reply) {
+        console.log("socket replied " + JSON.stringify(reply));
+        parseReply(reply);
     });
-
-    /*$('form#emit').submit(function(event) {
-        socket.emit('my event', {data: $('#emit_data').val()});
-        return false;
-    });
-    $('form#broadcast').submit(function(event) {
-        socket.emit('my broadcast event', {data: $('#broadcast_data').val()});
-        return false;
-    });*/
 
     $("#station").on('input', function() {
         if(changeTimer !== false) clearTimeout(changeTimer);

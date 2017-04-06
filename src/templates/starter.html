@@ -7,7 +7,7 @@
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="static/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="static/css/third_party/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="static/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body>
@@ -119,8 +119,13 @@
 
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-3.2.0.min.js"></script>
-  <script src="static/js/materialize.js"></script>
-  <script src="static/js/init.js"></script>
+  <script src="static/js/third_party/materialize.js"></script>
+  <script>
+    $(document).ready( function() {
+      // initializations
+      $('.button-collapse').sideNav();
+    }
+  </script>
 
   </body>
 </html>

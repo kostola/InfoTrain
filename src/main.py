@@ -19,6 +19,10 @@ logic.logger = app.logger
 def index():
     return render_template('index.html')
 
+@app.route("/autocomplete")
+def autocomplete():
+    return render_template('autocomplete.html')
+
 @app.route("/starter")
 def starter():
     return render_template('starter.html')
@@ -28,7 +32,7 @@ def stations_list(txt=None):
     app.logger.info("stations list partial: %s" % (txt))
     stations_dict = logic.stations_autocomplete(txt)
     app.logger.info(stations_dict)
-    return render_template('partials/stations_list.html', stations=stations_dict, stations_len=len(stations_dict))
+    return render_template('partials/index/stations_container.html', stations=stations_dict, stations_len=len(stations_dict))
 
 # ----- APIs --------------------------------------------------------------------------------------
 
@@ -40,9 +44,30 @@ def stations_lookup(txt=None):
 # ----- SocketIO ----------------------------------------------------------------------------------
 
 @socketio.on('find', namespace='/stationsws')
-def test_message(message):
+def stationsws_find(message):
     app.logger.info("stations ws: %s" % (message))
-    emit('find_reply', { 'data': logic.stations_autocomplete(message) })
+    stations = logic.stations_autocomplete(message['data'])
+    reply = {
+        "changes": [
+            {
+                "target": "#stations_msg",
+                "action": "set_html",
+                "html"  : render_template('partials/index/stations_msg.html', stations_len=len(stations))
+            },
+            {
+                "target": "#stations_container",
+                "action": "set_html",
+                "html"  : render_template('partials/index/stations_container.html', stations=stations, stations_len=len(stations))
+            }
+        ]
+    }
+    emit('find_reply', reply)
+
+@socketio.on('findlist', namespace='/stationsws')
+def stationsws_findlist(message):
+    app.logger.info("stations ws: %s" % (message))
+    stations = logic.stations_autocomplete_noids(message['data'])
+    emit('findlist_reply', stations)
 
 # ----- Main function -----------------------------------------------------------------------------
 

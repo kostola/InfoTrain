@@ -1,14 +1,14 @@
 {% for key, value in stations.iteritems() %}
     {% set row_counter = (loop.index - 1) % 4 %}
-    {% if row_counter == 0 %}
+    {% if loop.index == 1 %}
 <div class="row">
     {% endif %}
     <div class="col s12 m3">
         <div class="card-panel red darken-2">
-            <span class="white-text">{{ value }}</span>
+            <span class="white-text">{{ key }}</span>
         </div>
     </div>
-    {% if row_counter == 3 or loop.index == stations_len %}
+    {% if loop.index == stations_len %}
 </div>
     {% endif %}
 {% endfor %}

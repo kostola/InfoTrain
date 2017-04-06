@@ -1,0 +1,7 @@
+{% if stations_len == 1 %}
+<div class="chip">{{ stations_len }} station found</div>
+{% elif stations_len > 0 %}
+<div class="chip">{{ stations_len }} stations found</div>
+{% else %}
+<div class="chip">No stations found</div>
+{% endif %}
