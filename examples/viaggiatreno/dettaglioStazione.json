@@ -1,0 +1,51 @@
+// http://viaggiatreno.it/viaggiatrenonew/resteasy/viaggiatreno/dettaglioStazione/S05014/8
+
+{
+    "codReg":8,
+    "tipoStazione":3,
+    "dettZoomStaz":[
+        {
+            "codiceStazione":"S05014",
+            "zoomStartRange":8,
+            "zoomStopRange":8,
+            "pinpointVisibile":true,
+            "pinpointVisible":true,
+            "labelVisibile":true,
+            "labelVisible":true,
+            "codiceRegione":null
+        },
+        {
+            "codiceStazione":"S05014",
+            "zoomStartRange":9,
+            "zoomStopRange":11,
+            "pinpointVisibile":true,
+            "pinpointVisible":true,
+            "labelVisibile":true,
+            "labelVisible":true,
+            "codiceRegione":null
+        }
+    ],
+    "pstaz":[
+
+    ],
+    "mappaCitta":{
+        "urlImagePinpoint":"",
+        "urlImageBaloon":""
+    },
+    "codiceStazione":"S05014",
+    "codStazione":"S05014",
+    "lat":44.810203,
+    "lon":10.32837,
+    "latMappaCitta":0.0,
+    "lonMappaCitta":0.0,
+    "localita":{
+        "nomeLungo":"PARMA",
+        "nomeBreve":"Parma",
+        "label":"Parma",
+        "id":"S05014"
+    },
+    "esterno":false,
+    "offsetX":-4,
+    "offsetY":18,
+    "nomeCitta":"Parma"
+}
