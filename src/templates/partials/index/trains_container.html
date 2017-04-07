@@ -1,0 +1,57 @@
+<div class="row hide-on-large-only">
+    <div class="col s12 m8 offset-m2 l8 offset-l2">
+        <div class="card white">
+            <div class="card-content">
+                <span class="card-title red-text text-darken-1">{{ title }}</span>
+                <table class="striped">
+                    <thead>
+                        <tr>
+                            <th style="width: 30%">Train</th>
+                            <th>{{ where }}</th>
+                        </tr>
+                    </thead>
+
+                <tbody>
+                    {% for train in trains %}
+                    <tr>
+                        <td style="width: 30%"><span style="font-weight: 500;">{{ train['time'] }}</span></br>{{ train['code'] }}</td>
+                        <td><span style="font-weight: 500;">{{ train['where'] }}</span></br><span {% if train['delay'] != 'on time' %}class="red-text text-darken-1"{% endif %}>{{ train['delay'] }}</span></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row hide-on-med-and-down">
+    <div class="col s12 m8 offset-m2 l8 offset-l2">
+        <div class="card white">
+            <div class="card-content">
+                <span class="card-title red-text text-darken-1">{{ title }}</span>
+                <table class="striped">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Code</th>
+                            <th>{{ where }}</th>
+                            <th>Delay</th>
+                        </tr>
+                    </thead>
+
+                <tbody>
+                    {% for train in trains %}
+                    <tr>
+                        <td>{{ train['time'] }}</td>
+                        <td>{{ train['code'] }}</td>
+                        <td>{{ train['where'] }}</td>
+                        <td {% if train['delay'] != 'on time' %}class="red-text text-darken-1"{% endif %}>{{ train['delay'] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
