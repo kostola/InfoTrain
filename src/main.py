@@ -12,7 +12,7 @@ appcfg_host       = os.getenv('APPCFG_HOST', default_host)
 appcfg_port       = int(os.getenv('APPCFG_PORT', default_port))
 appcfg_debug      = os.getenv('APPCFG_DEBUG', default_debug) in [ 'true', 'True', 'TRUE' ]
 appcfg_secret     = os.getenv('APPCFG_SECRET', default_secret)
-appcfg_async_mode = os.getenv('APPCFG_DEBUG', '')
+appcfg_async_mode = os.getenv('APPCFG_ASYNC_MODE', '')
 if appcfg_async_mode == "":
     appcfg_async_mode = None
 
