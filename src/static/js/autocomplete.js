@@ -25,6 +25,7 @@ function findStationDetails(value) {
         $("#arrivals_container").html("");
         $("#departures_container").html("");
         socket.emit('stationdetails', { data: value });
+        console.log("WS: emitted 'stationdetails' (data: " + value + ")");
     }
 }
 
@@ -78,6 +79,7 @@ $(document).ready( function() {
             lastSearch = search_text;
             if ( search_text.length > 1 ) {
                 socket.emit('findlist', { data: search_text });
+                console.log("WS: emitted 'findlist' (data: " + search_text + ")");
             }
             timer = setTimeout(onTimerTriggered, 2000);
         }

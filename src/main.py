@@ -33,6 +33,7 @@ logic.logger = app.logger
 
 @app.route("/")
 def autocomplete():
+    app.logger.info("index")
     return render_template('autocomplete.html')
 
 @app.route("/starter")
