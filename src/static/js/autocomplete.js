@@ -54,7 +54,7 @@ $(document).ready( function() {
     $('.button-collapse').sideNav();
 
     // stations websocket
-    socket = io.connect('http://' + document.domain + ':' + location.port + '/stationsws');
+    socket = io.connect(location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '') + '/stationsws');
     
     socket.on('findlist_reply', function(reply) {
         console.log("findlist_reply");

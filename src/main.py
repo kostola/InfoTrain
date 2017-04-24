@@ -1,15 +1,27 @@
 from flask import Flask, jsonify, render_template
 from flask_socketio import SocketIO, emit
 import logic
+import os
 
-async_mode=None
+default_host   = '0.0.0.0'
+default_port   = '5000'
+default_debug  = 'False'
+default_secret = 'secret!'
+
+appcfg_host       = os.getenv('APPCFG_HOST', default_host)
+appcfg_port       = int(os.getenv('APPCFG_PORT', default_port))
+appcfg_debug      = os.getenv('APPCFG_DEBUG', default_debug) in [ 'True', 'true', 'TRUE' ]
+appcfg_secret     = os.getenv('APPCFG_SECRET', default_secret)
+appcfg_async_mode = os.getenv('APPCFG_DEBUG', '')
+if appcfg_async_mode == "":
+    appcfg_async_mode = None
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'secret!'
-app.config['DEBUG'] = True
+app.config['SECRET_KEY'] = appcfg_secret
+app.config['DEBUG'] = appcfg_debug
 app.jinja_env.lstrip_blocks = True
 app.jinja_env.trim_blocks = True
-socketio = SocketIO(app, async_mode=async_mode)
+socketio = SocketIO(app, async_mode=appcfg_async_mode)
 
 logic.logger = app.logger
 
@@ -99,4 +111,4 @@ def stationsws_stationdetails(message):
 # ----- Main function -----------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    socketio.run(app, host="0.0.0.0", debug=True)
+    socketio.run(app, host=appcfg_host, port=appcfg_port, debug=appcfg_debug)
